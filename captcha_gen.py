@@ -22,7 +22,7 @@ def gen_captcha_text_and_image():
 
 if __name__ == '__main__':
 
-    count = 10*1000
+    count = 168*10000
     path = captcha_setting.TRAIN_DATASET_PATH    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
     if not os.path.exists(path):
         os.makedirs(path)
