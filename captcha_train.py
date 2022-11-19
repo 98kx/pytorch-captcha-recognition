@@ -14,7 +14,10 @@ def main():
     cnn = CNN()
     cnn.train()
     print('init net')
-    criterion = nn.MultiLabelSoftMarginLoss()
+    device = torch.device("mps")
+    print("use mps :", torch.has_mps)
+
+    criterion = nn.MultiLabelSoftMarginLoss().to(device)
     optimizer = torch.optim.Adam(cnn.parameters(), lr=learning_rate)
 
     # Train the Model
