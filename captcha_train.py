@@ -16,12 +16,11 @@ def main():
     use_cuda = torch.cuda.is_available()
     use_mps = torch.backends.mps.is_available()
 
-
     if use_cuda:
         device = torch.device("cuda")
         print("device use cuda" )
     elif use_mps:
-        device = torch.device("mps")
+        device = torch.device("cpu")
         print("device use mps")
     else:
         device = torch.device("cpu")

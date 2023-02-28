@@ -20,16 +20,22 @@ def gen_captcha_text_and_image():
     captcha_image = Image.open(image.generate(captcha_text))
     return captcha_text, captcha_image
 
+def gen_captcha_text_same_test_and_image(text):
+    image = ImageCaptcha()
+    captcha_text = text #random_captcha()
+    captcha_image = Image.open(image.generate(captcha_text))
+    return captcha_text, captcha_image
+
 if __name__ == '__main__':
 
-    count = 168*10000
-    path = captcha_setting.TRAIN_DATASET_PATH    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
+    count = 10 #168*10000
+    path = captcha_setting.TRAIN_DATASET_PATH2    #通过改变此处目录，以生成 训练、测试和预测用的验证码集
     if not os.path.exists(path):
         os.makedirs(path)
     for i in range(count):
         now = str(int(time.time()))
-        text, image = gen_captcha_text_and_image()
-        filename = text+'_'+now+'.png'
+        text, image = gen_captcha_text_same_test_and_image("5X0B")
+        filename = text + str(i) +'_'+now+'.png'
         image.save(path  + os.path.sep +  filename)
         print('saved %d : %s' % (i+1,filename))
 

@@ -8,7 +8,30 @@ from captcha_cnn_model import CNN
 import one_hot_encoding
 
 def main():
-    cnn = CNN()
+
+    use_cuda = torch.cuda.is_available()
+    use_mps = torch.backends.mps.is_available()
+
+    device = torch.device("cpu")
+    # if use_cuda:
+    #     device = torch.device("cuda")
+    #     print("device use cuda")
+    # elif use_mps:
+    #     device = torch.device("mps")
+    #     print("device use mps")
+    # else:
+    #     device = torch.device("cpu")
+    #     print("device use cpu")
+
+    # train_kwargs = {'batch_size': batch_size}
+
+    # if use_cuda:
+    #     cuda_kwargs = {'num_workers': 1,
+    #                    'pin_memory': True,
+    #                    'shuffle': True}
+        # train_kwargs.update(cuda_kwargs)
+
+    cnn = CNN().to(device)
     cnn.eval()
     cnn.load_state_dict(torch.load('model.pkl'))
     print("load cnn net.")
@@ -18,6 +41,9 @@ def main():
     correct = 0
     total = 0
     for i, (images, labels) in enumerate(test_dataloader):
+
+        images, labels = images.to(device), labels.to(device)
+
         image = images
         vimage = Variable(image)
         predict_label = cnn(vimage)

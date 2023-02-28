@@ -14,5 +14,7 @@ IMAGE_HEIGHT = 60
 IMAGE_WIDTH = 160
 
 TRAIN_DATASET_PATH = 'dataset' + os.path.sep + 'train'
+TRAIN_DATASET_PATH2 = 'dataset' + os.path.sep + 'train_test'
+
 TEST_DATASET_PATH = 'dataset' + os.path.sep + 'test'
 PREDICT_DATASET_PATH = 'dataset' + os.path.sep + 'predict'
